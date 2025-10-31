@@ -1,0 +1,187 @@
+<svg id="uml-sequence-diagram" width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1400" style="background: #ffffff;">
+  
+  <!-- UML Diagram Title Frame -->
+  <rect x="20" y="20" width="1960" height="1360" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="1000" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#000000">
+    User Registration Flow
+  </text>
+  <text x="1000" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#666666">
+    UML 2.0 Sequence Diagram
+  </text>
+  
+  <!-- Lifelines (Actors) with proper UML styling -->
+  <g id="lifelines">
+    <!-- User -->
+    <rect x="100" y="120" width="160" height="80" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <circle cx="180" cy="140" r="12" fill="#333333"/>
+    <line x1="12" y1="0" x2="12" y2="0" stroke="#000000" stroke-width="1"/>
+    <path d="M 100 140 L 150 130 L 160 140 L 150 150 Z" fill="#000000"/>
+    <text x="180" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">User</text>
+    <line x1="180" y1="200" x2="180" y2="1320" stroke="#000000" stroke-width="2"/>
+    <circle cx="180" cy="1320" r="8" fill="#000000"/>
+    
+    <!-- Frontend -->
+    <rect x="420" y="120" width="160" height="80" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <rect x="480" y="140" width="40" height="40" fill="#ffffff" stroke="#000000" stroke-width="2" rx="3"/>
+    <text x="500" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">Frontend</text>
+    <line x1="500" y1="200" x2="500" y2="1320" stroke="#000000" stroke-width="2"/>
+    <circle cx="500" cy="1320" r="8" fill="#000000"/>
+    
+    <!-- Backend API -->
+    <rect x="740" y="120" width="160" height="80" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <rect x="800" y="140" width="40" height="40" fill="#ffffff" stroke="#000000" stroke-width="2" rx="3"/>
+    <text x="820" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">Backend API</text>
+    <line x1="820" y1="200" x2="820" y2="1320" stroke="#000000" stroke-width="2"/>
+    <circle cx="820" cy="1320" r="8" fill="#000000"/>
+    
+    <!-- Fireblocks API -->
+    <rect x="1060" y="120" width="160" height="80" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <rect x="1120" y="140" width="40" height="40" fill="#ffffff" stroke="#000000" stroke-width="2" rx="3"/>
+    <text x="1140" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">Fireblocks API</text>
+    <line x1="1140" y1="200" x2="1140" y2="1320" stroke="#000000" stroke-width="2"/>
+    <circle cx="1140" cy="1320" r="8" fill="#000000"/>
+    
+    <!-- Database -->
+    <rect x="1380" y="120" width="160" height="80" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <ellipse cx="1460" cy="160" rx="30" ry="15" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <ellipse cx="1460" cy="170" rx="30" ry="15" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <text x="1460" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">Database</text>
+    <line x1="1460" y1="200" x2="1460" y2="1320" stroke="#000000" stroke-width="2"/>
+    <circle cx="1460" cy="1320" r="8" fill="#000000"/>
+  </g>
+  
+  <!-- Messages with proper UML notation -->
+  <g id="messages">
+    <!-- Message 1: User -> Frontend -->
+    <line x1="180" y1="260" x2="500" y2="260" stroke="#000000" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <rect x="320" y="245" width="200" height="20" fill="#ffffff" stroke="none"/>
+    <text x="340" y="258" font-family="Arial, sans-serif" font-size="12" fill="#000000">1: register(email, password, role)</text>
+    
+    <!-- Activation: Frontend -->
+    <rect x="480" y="280" width="40" height="70" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+    
+    <!-- Message 2: Frontend -> Backend API -->
+    <line x1="500" y1="300" x2="820" y2="300" stroke="#000000" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <rect x="580" y="285" width="220" height="20" fill="#ffffff" stroke="none"/>
+    <text x="660" y="298" font-family="Arial, sans-serif" font-size="12" fill="#000000">2: POST /api/auth/register</text>
+    
+    <!-- Activation: Backend API -->
+    <rect x="800" y="320" width="40" height="500" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+    
+    <!-- Self Message 3: Backend API -->
+    <path d="M 820 340 L 860 340 L 860 360 L 840 360" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrow-filled)"/>
+    <rect x="760" y="345" width="100" height="15" fill="#ffffff" stroke="none"/>
+    <text x="810" y="356" font-family="Arial, sans-serif" font-size="11" fill="#000000">3: validateInput()</text>
+    <path d="M 840 360 L 900 360 L 900 380 L 860 380" stroke="#000000" stroke-width="2" fill="none"/>
+    <path d="M 820 380 L 860 380 L 860 360 L 840 360" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrow-filled)"/>
+    <rect x="760" y="375" width="120" height="15" fill="#ffffff" stroke="none"/>
+    <text x="820" y="386" font-family="Arial, sans-serif" font-size="11" fill="#000000">hashPassword()</text>
+    
+    <!-- Message 4: Backend API -> Database -->
+    <line x1="820" y1="420" x2="1460" y2="420" stroke="#000000" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <rect x="1120" y="405" width="260" height="20" fill="#ffffff" stroke="none"/>
+    <text x="1140" y="418" font-family="Arial, sans-serif" font-size="12" fill="#000000">4: createUser(email, hashedPassword, role)</text>
+    
+    <!-- Activation: Database -->
+    <rect x="1440" y="440" width="40" height="80" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+    
+    <!-- Return Message 5: Database -> Backend API -->
+    <line x1="1460" y1="480" x2="820" y2="480" stroke="#000000" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-open)"/>
+    <rect x="1080" y="465" width="240" height="20" fill="#ffffff" stroke="none"/>
+    <text x="1140" y="478" font-family="Arial, sans-serif" font-size="12" fill="#000000">5: User(userId: 123)</text>
+    
+    <!-- Alternative Fragment (UML Combined Fragment) -->
+    <rect x="800" y="540" width="660" height="380" fill="none" stroke="#000000" stroke-width="2"/>
+    <polygon points="800,540 860,540 860,570 850,580 800,580" fill="#ffffcc" stroke="#000000" stroke-width="2"/>
+    <text x="830" y="565" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000000">alt</text>
+    <line x1="860" y1="560" x2="1460" y2="560" stroke="#000000" stroke-width="1"/>
+    <text x="1130" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#cc0000">
+      [role == "ISSUER" OR role == "INVESTOR"]
+    </text>
+    
+    <!-- Message 6: Backend API -> Fireblocks API -->
+    <line x1="820" y1="620" x2="1140" y2="620" stroke="#cc6600" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <rect x="920" y="605" width="280" height="20" fill="#ffffff" stroke="none"/>
+    <text x="980" y="618" font-family="Arial, sans-serif" font-size="12" fill="#cc6600">6: createVault(email, userId)</text>
+    
+    <!-- Activation: Fireblocks API -->
+    <rect x="1120" y="640" width="40" height="60" fill="#ffe6cc" stroke="#cc6600" stroke-width="1"/>
+    
+    <!-- Return Message 7: Fireblocks API -> Backend API -->
+    <line x1="1140" y1="660" x2="820" y2="660" stroke="#cc6600" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-open)"/>
+    <rect x="920" y="645" width="200" height="20" fill="#ffffff" stroke="none"/>
+    <text x="980" y="658" font-family="Arial, sans-serif" font-size="12" fill="#cc6600">7: Vault(vaultId: "vault_abc")</text>
+    
+    <!-- Message 8: Backend API -> Database -->
+    <line x1="820" y1="720" x2="1460" y2="720" stroke="#cc6600" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <rect x="1080" y="705" width="260" height="20" fill="#ffffff" stroke="none"/>
+    <text x="1140" y="718" font-family="Arial, sans-serif" font-size="12" fill="#cc6600">8: updateUser(userId, vaultId)</text>
+    
+    <!-- Message 9: Backend API -> Database -->
+    <line x1="820" y1="780" x2="1460" y2="780" stroke="#cc6600" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <rect x="1080" y="765" width="240" height="20" fill="#ffffff" stroke="none"/>
+    <text x="1140" y="778" font-family="Arial, sans-serif" font-size="12" fill="#cc6600">9: syncWallets(userId)</text>
+    
+    <!-- End of Alternative Fragment -->
+    
+    <!-- Self Message 10: Backend API -->
+    <path d="M 820 860 L 880 860 L 880 890 L 860 890" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrow-filled)"/>
+    <rect x="720" y="870" width="160" height="15" fill="#ffffff" stroke="none"/>
+    <text x="800" y="881" font-family="Arial, sans-serif" font-size="11" fill="#000000">10: generateJWT()</text>
+    <path d="M 860 890 L 900 890 L 900 920 L 880 920" stroke="#000000" stroke-width="2" fill="none"/>
+    <path d="M 820 920 L 880 920 L 880 890 L 860 890" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrow-filled)"/>
+    <rect x="720" y="915" width="140" height="15" fill="#ffffff" stroke="none"/>
+    <text x="790" y="926" font-family="Arial, sans-serif" font-size="11" fill="#000000">generateRefreshToken()</text>
+    
+    <!-- Return Message 11: Backend API -> Frontend -->
+    <line x1="820" y1="960" x2="500" y2="960" stroke="#000000" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-open)"/>
+    <rect x="600" y="945" width="300" height="20" fill="#ffffff" stroke="none"/>
+    <text x="660" y="958" font-family="Arial, sans-serif" font-size="12" fill="#000000">11: Response(user, accessToken, refreshToken)</text>
+    
+    <!-- Self Message 12: Frontend -->
+    <path d="M 500 1000 L 560 1000 L 560 1020 L 520 1020" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrow-filled)"/>
+    <rect x="400" y="1010" width="160" height="15" fill="#ffffff" stroke="none"/>
+    <text x="480" y="1021" font-family="Arial, sans-serif" font-size="11" fill="#000000">12: setHttpOnlyCookies()</text>
+    <path d="M 520 1020 L 560 1020 L 560 1040 L 500 1040" stroke="#000000" stroke-width="2" fill="none"/>
+    
+    <!-- Return Message 13: Frontend -> User -->
+    <line x1="500" y1="1080" x2="180" y2="1080" stroke="#000000" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-open)"/>
+    <rect x="280" y="1065" width="200" height="20" fill="#ffffff" stroke="none"/>
+    <text x="340" y="1078" font-family="Arial, sans-serif" font-size="12" fill="#000000">13: redirect("/dashboard")</text>
+    
+    <!-- End Activation Boxes -->
+    <rect x="1440" y="1320" width="40" height="0" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+    <rect x="1120" y="700" width="40" height="0" fill="#ffe6cc" stroke="#cc6600" stroke-width="1"/>
+    <rect x="800" y="1320" width="40" height="0" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+    <rect x="480" y="350" width="40" height="0" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+  </g>
+  
+  <!-- Arrow Markers (UML Standard) -->
+  <defs>
+    <marker id="arrow-filled" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 L 2 6 Z" fill="#000000" stroke="#000000"/>
+    </marker>
+    <marker id="arrow-open" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12" fill="none" stroke="#000000" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  
+  <!-- UML Diagram Legend -->
+  <g id="uml-legend">
+    <rect x="1600" y="1200" width="340" height="140" fill="#f9f9f9" stroke="#000000" stroke-width="1" rx="5"/>
+    <text x="1770" y="1225" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#000000">UML Notation</text>
+    
+    <line x1="1620" y1="1240" x2="1660" y2="1240" stroke="#000000" stroke-width="2" marker-end="url(#arrow-filled)"/>
+    <text x="1675" y="1245" font-family="Arial, sans-serif" font-size="12" fill="#000000">Synchronous call</text>
+    
+    <line x1="1620" y1="1265" x2="1660" y2="1265" stroke="#000000" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-open)"/>
+    <text x="1675" y="1270" font-family="Arial, sans-serif" font-size="12" fill="#000000">Return message</text>
+    
+    <rect x="1620" y="1285" width="40" height="15" fill="#cce5ff" stroke="#0066cc" stroke-width="1"/>
+    <text x="1675" y="1296" font-family="Arial, sans-serif" font-size="12" fill="#000000">Activation (execution)</text>
+    
+    <path d="M 1620 1310 L 1660 1310 L 1660 1330 L 1640 1330" stroke="#000000" stroke-width="2" fill="none" marker-end="url(#arrow-filled)"/>
+    <text x="1675" y="1321" font-family="Arial, sans-serif" font-size="12" fill="#000000">Self-call</text>
+  </g>
+  
+</svg>

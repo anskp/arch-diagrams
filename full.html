@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPYm Architecture Diagram</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            margin: 0;
+            font-size: 1.8rem;
+            color: #059669;
+        }
+        
+        .diagram-container {
+            display: flex;
+            min-height: 700px;
+            position: relative;
+        }
+        
+        .section {
+            flex: 1;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .offchain-section {
+            background-color: rgba(67, 97, 238, 0.05);
+            border-right: 2px dashed #dee2e6;
+        }
+        
+        .onchain-section {
+            background-color: rgba(247, 37, 133, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .offchain-section .section-title {
+            color: #4361ee;
+        }
+        
+        .onchain-section .section-title {
+            color: #f72585;
+        }
+        
+        .component-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        .component-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .offchain-section .component-icon {
+            color: #4361ee;
+        }
+        
+        .onchain-section .component-icon {
+            color: #f72585;
+        }
+        
+        .component-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .component-details {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .connector {
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+        
+        .connector i {
+            color: #6c757d;
+        }
+        
+        .users-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        
+        .user-card {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .user-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .user-card:first-child {
+            margin-left: 0;
+        }
+        
+        .user-card:last-child {
+            margin-right: 0;
+        }
+        
+        .user-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #4361ee;
+        }
+        
+        .user-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            margin: 10px 0;
+            color: #6c757d;
+        }
+        
+        .flow-arrow i {
+            font-size: 1.3rem;
+        }
+        
+        .question-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffbe0b;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        
+        .dashboard-card {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .dashboard-card:first-child {
+            margin-left: 0;
+        }
+        
+        .dashboard-card:last-child {
+            margin-right: 0;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .dashboard-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .dashboard-card:first-child .dashboard-icon {
+            color: #4361ee;
+        }
+        
+        .dashboard-card:last-child .dashboard-icon {
+            color: #7209b7;
+        }
+        
+        .dashboard-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .dashboard-features {
+            text-align: left;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .dashboard-features ul {
+            padding-left: 15px;
+            margin-bottom: 0;
+        }
+        
+        .dashboard-features li {
+            margin-bottom: 3px;
+        }
+        
+        .common-components {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px dashed #dee2e6;
+        }
+        
+        .common-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            text-align: center;
+            color: #4361ee;
+        }
+        
+        .common-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .common-card {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 0 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .common-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .common-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #4361ee;
+        }
+        
+        .common-title-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .flow-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .flow-step {
+            width: 140px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 1.2rem;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .step-icon:hover {
+            transform: translateY(-3px);
+        }
+        
+        .onboarding-step .step-icon {
+            background: linear-gradient(135deg, #06ffa5, #00b4d8);
+        }
+        
+        .tokenization-step .step-icon {
+            background: linear-gradient(135deg, #ff006e, #ff4081);
+        }
+        
+        .marketplace-step .step-icon {
+            background: linear-gradient(135deg, #ffbe0b, #fb8500);
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+            font-size: 0.85rem;
+        }
+        
+        .step-description {
+            font-size: 0.75rem;
+            color: #6c757d;
+        }
+        
+        .flow-arrow {
+            width: 25px;
+            text-align: center;
+            color: #adb5bd;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .flow-line {
+            position: absolute;
+            top: 25px;
+            left: 70px;
+            right: 70px;
+            height: 2px;
+            background-color: #e9ecef;
+            z-index: 1;
+        }
+        
+        .flow-section {
+            margin-bottom: 25px;
+        }
+        
+        .flow-section-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #4361ee;
+            text-align: center;
+        }
+        
+        .api-endpoint {
+            background: #f1f3f5;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            margin-top: 3px;
+            display: inline-block;
+        }
+        
+        @media (max-width: 992px) {
+            .diagram-container {
+                flex-direction: column;
+            }
+            
+            .offchain-section {
+                border-right: none;
+                border-bottom: 2px dashed #dee2e6;
+            }
+            
+            .connector {
+                top: auto;
+                bottom: -15px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .users-container {
+                flex-direction: column;
+            }
+            
+            .user-card {
+                margin: 8px 0;
+            }
+            
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .dashboard-card {
+                margin: 8px 0;
+            }
+            
+            .common-container {
+                flex-direction: column;
+            }
+            
+            .common-card {
+                margin: 8px 0;
+            }
+            
+            .flow-diagram {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .flow-step {
+                margin-bottom: 15px;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+            
+            .flow-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>COPYm Architecture Diagram</h1>
+    </div>
+    
+    <div class="diagram-container">
+        <!-- Platform Section -->
+        <div class="section offchain-section">
+            <div class="section-title">
+                <i class="fas fa-server me-2"></i>COPYM
+            </div>
+            
+            <!-- Users Cards -->
+            <div class="users-container">
+                <div class="user-card">
+                    <div class="user-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="user-title">Issuer</div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-title">Investor</div>
+                </div>
+                
+                <div class="user-card">
+                    <div class="user-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="user-title">Admin</div>
+                </div>
+            </div>
+            
+            <div class="flow-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <!-- Dashboard Cards -->
+            <div class="dashboard-container">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="dashboard-title">Issuer Dashboard</div>
+                    <div class="dashboard-features">
+                        <ul>
+                            <li>Token minting starts</li>
+                            <li>Verify assets via custodian</li>
+                            <li>Fireblocks API calls to mint</li>
+                            <li>Token mint to own wallet</li>
+                            <li>List tokens to marketplace</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="dashboard-title">Investor Dashboard</div>
+                    <div class="dashboard-features">
+                        <ul>
+                            <li>Purchase tokens</li>
+                            <li>Event emits Fireblocks</li>
+                            <li>Token to investor vault</li>
+                            <li>Creates token VC</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Onboarding Flow -->
+            <div class="flow-section">
+                <div class="flow-section-title">User Onboarding</div>
+                <div class="component-card">
+                    <div class="flow-diagram">
+                        <div class="flow-line"></div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="step-title">Registration</div>
+                            <div class="step-description">User submits details</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="step-title">Validation</div>
+                            <div class="step-description">Backend validates</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="step-title">Database</div>
+                            <div class="step-description">Creates user record</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="step-title">Vault Creation</div>
+                            <div class="step-description">Fireblocks initializes</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="step-title">Wallet Sync</div>
+                            <div class="step-description">Sync addresses</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <div class="step-title">JWT Tokens</div>
+                            <div class="step-description">Issue tokens</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step onboarding-step">
+                            <div class="step-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="step-title">Dashboard</div>
+                            <div class="step-description">Redirect user</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Token Creation Flow -->
+            <div class="flow-section">
+                <div class="flow-section-title">Asset Tokenization</div>
+                <div class="component-card">
+                    <div class="flow-diagram">
+                        <div class="flow-line"></div>
+                        
+                        <div class="flow-step tokenization-step">
+                            <div class="step-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="step-title">Initiate</div>
+                            <div class="step-description">Submit asset metadata</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step tokenization-step">
+                            <div class="step-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="step-title">Verification</div>
+                            <div class="step-description">Custodian <span class="question-mark">?</span></div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step tokenization-step">
+                            <div class="step-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="step-title">Fireblocks API</div>
+                            <div class="step-description">Tokenization engine</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step tokenization-step">
+                            <div class="step-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="step-title">Mint Tokens</div>
+                            <div class="step-description">Create on-chain</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step tokenization-step">
+                            <div class="step-icon">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <div class="step-title">Link Wallet</div>
+                            <div class="step-description">Associate with issuer</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step tokenization-step">
+                            <div class="step-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="step-title">Off-Chain Store</div>
+                            <div class="step-description">Save in database</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Marketplace Flow -->
+            <div class="flow-section">
+                <div class="flow-section-title">Marketplace Flow</div>
+                <div class="component-card">
+                    <div class="flow-diagram">
+                        <div class="flow-line"></div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div class="step-title">Asset Onboarding</div>
+                            <div class="step-description">Admin creates asset <span class="api-endpoint">POST /api/assets</span></div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="step-title">Token Design</div>
+                            <div class="step-description">Define parameters <span class="api-endpoint">/api/tokens</span></div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div class="step-title">Token Deployment</div>
+                            <div class="step-description">Deploy smart contract</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="step-title">Marketplace Listing</div>
+                            <div class="step-description">List tokens <span class="api-endpoint">POST /api/marketplace/list</span></div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="step-title">Purchase Flow</div>
+                            <div class="step-description">Investor purchase <span class="api-endpoint">/api/marketplace/purchase</span></div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="step-title">Token Transfer</div>
+                            <div class="step-description">Vault to vault transfer</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="step-title">VC Generation</div>
+                            <div class="step-description">Create credential</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                        
+                        <div class="flow-step marketplace-step">
+                            <div class="step-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="step-title">Post-Purchase</div>
+                            <div class="step-description">Update portfolio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connector">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+        </div>
+        
+        <!-- ON-CHAIN Section -->
+        <div class="section onchain-section">
+            <div class="section-title">
+                <i class="fas fa-link me-2"></i>ON-CHAIN
+            </div>
+            
+            <!-- Fireblocks (moved to ON-CHAIN) -->
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="component-title">Fireblocks</div>
+                <div class="component-details">Vault creation, wallet sync, secure transfers</div>
+            </div>
+            
+            <div class="flow-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <!-- DID Registry -->
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <div class="component-title">DID Registry</div>
+            </div>
+            
+            <div class="flow-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <!-- Smart Contract -->
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="component-title">Smart Contract</div>
+            </div>
+            
+            <div class="flow-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <!-- Marketplace -->
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="component-title">Marketplace</div>
+            </div>
+            
+            <div class="flow-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <!-- Process Flows -->
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="component-title">User Registration</div>
+            </div>
+            
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-upload"></i>
+                </div>
+                <div class="component-title">Asset Upload</div>
+            </div>
+            
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="component-title">Token Minting</div>
+            </div>
+            
+            <div class="component-card">
+                <div class="component-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="component-title">Trading</div>
+            </div>
+            
+            <div class="flow-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <!-- Common Components -->
+            <div class="common-components">
+                <div class="common-title">Common Components</div>
+                <div class="common-container">
+                    <div class="common-card">
+                        <div class="common-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="common-title-text">Fireblocks Vault</div>
+                    </div>
+                    
+                    <div class="common-card">
+                        <div class="common-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="common-title-text">DID</div>
+                    </div>
+                    
+                    <div class="common-card">
+                        <div class="common-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="common-title-text">SBT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

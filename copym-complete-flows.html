@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPYm Complete Flow Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 50px;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .flow-section {
+            margin-bottom: 70px;
+            border: 3px solid #000000;
+            border-radius: 8px;
+            padding: 35px;
+            page-break-inside: avoid;
+        }
+
+        .flow-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #000000;
+            padding-bottom: 15px;
+        }
+
+        .flow-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .flow-status {
+            font-size: 12px;
+            border: 2px solid #000000;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .flow-horizontal {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .flow-step {
+            min-width: 200px;
+            max-width: 200px;
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 4px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .flow-step:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        .step-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+
+        .step-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.5;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .step-subtitle {
+            font-size: 11px;
+            color: #666666;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .step-location {
+            font-size: 9px;
+            color: #000000;
+            border: 1px solid #000000;
+            padding: 3px 6px;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 8px;
+            margin-right: 4px;
+            font-weight: 600;
+        }
+
+        .arrow {
+            font-size: 28px;
+            color: #000000;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .question-badge {
+            display: inline-block;
+            border: 2px solid #000000;
+            color: #000000;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 4px;
+        }
+
+        .components-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px dashed #000000;
+        }
+
+        .components-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .component-card {
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .component-card:hover {
+            background: #f5f5f5;
+        }
+
+        .component-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .component-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            .flow-horizontal {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            .flow-step {
+                max-width: 100%;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .flow-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COPYm Platform - Complete System Flows</h1>
+        
+        <!-- Flow 1: User Onboarding -->
+        <div class="flow-section">
+            <div class="flow-header">
+                <div class="flow-title">Flow 1: User Onboarding & Vault Initialization</div>
+                <div class="flow-status">COMPLETED</div>
+            </div>
+            
+            <div class="flow-horizontal">
+                <div class="flow-step">
+                    <div class="step-icon">◧</div>
+                    <div class="step-title">User Registration</div>
+                    <div class="step-subtitle">Submit email, password, role (Issuer/Investor) via Frontend</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◈</div>
+                    <div class="step-title">Backend Validation</div>
+                    <div class="step-subtitle">Validate input, hash password, create user in Database</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◎</div>
+                    <div class="step-title">Vault Creation</div>
+                    <div class="step-subtitle">Initialize Fireblocks Vault Account, associate vault ID</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◉</div>
+                    <div class="step-title">Wallet Sync & Auth</div>
+                    <div class="step-subtitle">Sync wallets, issue JWT access + refresh tokens</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◫</div>
+                    <div class="step-title">Session & Redirect</div>
+                    <div class="step-subtitle">Store tokens in httpOnly cookies, redirect to dashboard</div>
+                </div>
+            </div>
+
+            <div class="components-section">
+                <div class="components-title">Components Involved</div>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <div class="component-icon">◰</div>
+                        <div class="component-name">Frontend</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◈</div>
+                        <div class="component-name">Backend API</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◪</div>
+                        <div class="component-name">Database</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◎</div>
+                        <div class="component-name">Fireblocks API</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow 2: Token Creation -->
+        <div class="flow-section">
+            <div class="flow-header">
+                <div class="flow-title">Flow 2: Asset Tokenization & Minting Workflow</div>
+                <div class="flow-status">IN PROGRESS</div>
+            </div>
+            
+            <div class="flow-horizontal">
+                <div class="flow-step">
+                    <div class="step-icon">◧</div>
+                    <div class="step-title">Asset Creation</div>
+                    <div class="step-subtitle">Admin creates asset record with metadata + valuation via API</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◈</div>
+                    <div class="step-title">Token Configuration</div>
+                    <div class="step-subtitle">Issuer defines token parameters (ERC20/ERC721) and economics</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◎</div>
+                    <div class="step-title">Asset Verification <span class="question-badge">?</span></div>
+                    <div class="step-subtitle">Custodian verification (TBD)</div>
+                    <div class="step-location">ON-CHAIN</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◉</div>
+                    <div class="step-title">Token Minting</div>
+                    <div class="step-subtitle">Fireblocks API triggers tokenization engine to mint tokens</div>
+                    <div class="step-location">ON-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◫</div>
+                    <div class="step-title">Deploy & Store</div>
+                    <div class="step-subtitle">Deploy smart contract, log on-chain, store in Prisma + MySQL</div>
+                    <div class="step-location">ON-CHAIN</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+            </div>
+
+            <div class="components-section">
+                <div class="components-title">Components Involved</div>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <div class="component-icon">◈</div>
+                        <div class="component-name">Backend API</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◎</div>
+                        <div class="component-name">Fireblocks</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◪</div>
+                        <div class="component-name">Prisma + MySQL</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◉</div>
+                        <div class="component-name">Smart Contracts</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◔</div>
+                        <div class="component-name">Custodian (TBD)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow 3: Marketplace -->
+        <div class="flow-section">
+            <div class="flow-header">
+                <div class="flow-title">Flow 3: Marketplace - Token Listing & Trade Lifecycle</div>
+                <div class="flow-status">IN PROGRESS</div>
+            </div>
+            
+            <div class="flow-horizontal">
+                <div class="flow-step">
+                    <div class="step-icon">◧</div>
+                    <div class="step-title">List Tokens</div>
+                    <div class="step-subtitle">Issuer lists tokens with metadata, pricing, compliance tags</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◰</div>
+                    <div class="step-title">Browse & Purchase</div>
+                    <div class="step-subtitle">Investor discovers listings, performs due diligence, initiates order</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◈</div>
+                    <div class="step-title">Payment Transfer</div>
+                    <div class="step-subtitle">Execute payment from investor vault to issuer vault via Fireblocks</div>
+                    <div class="step-location">ON-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◎</div>
+                    <div class="step-title">Token Transfer</div>
+                    <div class="step-subtitle">Transfer tokens from issuer to investor vault (TRANSFERRING → COMPLETED)</div>
+                    <div class="step-location">ON-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◉</div>
+                    <div class="step-title">VC Generation</div>
+                    <div class="step-subtitle">Generate & store Verifiable Credential, upload to IPFS (Pinata)</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="step-icon">◫</div>
+                    <div class="step-title">Post-Trade</div>
+                    <div class="step-subtitle">Update portfolio, notify parties, maintain audit trail</div>
+                    <div class="step-location">OFF-CHAIN</div>
+                </div>
+            </div>
+
+            <div class="components-section">
+                <div class="components-title">Components Involved</div>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <div class="component-icon">◰</div>
+                        <div class="component-name">Frontend</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◈</div>
+                        <div class="component-name">Backend API</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◎</div>
+                        <div class="component-name">Fireblocks</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◪</div>
+                        <div class="component-name">Database</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◉</div>
+                        <div class="component-name">IPFS (Pinata)</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-icon">◫</div>
+                        <div class="component-name">Smart Contracts</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
